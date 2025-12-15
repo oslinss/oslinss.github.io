@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Nuxt3 Nuxt 配置 nuxt.config.ts\nexport default defineNuxtConfig({ // 我的 Nuxt 配置 }) 用于添加自定义脚本、注册模块或更改渲染模式，无需导入即可全局使用\nuseHead app.vue\n1 2 3 4 5 6 7 8 &lt;script setup lang=&#34;ts&#34;&gt; useHead({ title: &#39;我的应用&#39;, meta: [ { name: &#39;description&#39;, content: &#39;我的精彩网站。&#39; } ] }) &lt;/script&gt; useSeoMeta 定义站点的 SEO 元数据标签，并提供完整的类型安全。\n">
 <title>Nuxt3</title>
@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="Nuxt3">
 <meta property='og:description' content="Nuxt3 Nuxt 配置 nuxt.config.ts\nexport default defineNuxtConfig({ // 我的 Nuxt 配置 }) 用于添加自定义脚本、注册模块或更改渲染模式，无需导入即可全局使用\nuseHead app.vue\n1 2 3 4 5 6 7 8 &lt;script setup lang=&#34;ts&#34;&gt; useHead({ title: &#39;我的应用&#39;, meta: [ { name: &#39;description&#39;, content: &#39;我的精彩网站。&#39; } ] }) &lt;/script&gt; useSeoMeta 定义站点的 SEO 元数据标签，并提供完整的类型安全。\n">
 <meta property='og:url' content='https://oslinss.github.io/p/nuxt3/'>
-<meta property='og:site_name' content='lin'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-09T21:26:22&#43;08:00'/><meta property='article:modified_time' content='2025-10-09T21:26:22&#43;08:00'/>
+<meta property='og:site_name' content='林'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-09T21:26:22&#43;08:00'/><meta property='article:modified_time' content='2025-10-09T21:28:16&#43;08:00'/>
 <meta name="twitter:title" content="Nuxt3">
 <meta name="twitter:description" content="Nuxt3 Nuxt 配置 nuxt.config.ts\nexport default defineNuxtConfig({ // 我的 Nuxt 配置 }) 用于添加自定义脚本、注册模块或更改渲染模式，无需导入即可全局使用\nuseHead app.vue\n1 2 3 4 5 6 7 8 &lt;script setup lang=&#34;ts&#34;&gt; useHead({ title: &#39;我的应用&#39;, meta: [ { name: &#39;description&#39;, content: &#39;我的精彩网站。&#39; } ] }) &lt;/script&gt; useSeoMeta 定义站点的 SEO 元数据标签，并提供完整的类型安全。\n">
     </head>
@@ -40,7 +40,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -69,8 +69,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">lin</a></h1>
-            <h2 class="site-description">Welcome to my blog !</h2>
+            <h1 class="site-name"><a href="/">林</a></h1>
+            <h2 class="site-description">欢迎来到我的博客！</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -119,29 +119,6 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="https://oslinss.github.io/" selected>English</option>
-                                
-                                    <option value="https://oslinss.github.io/zh-cn/" >中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -161,7 +138,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -186,7 +163,7 @@
 
 
         </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
+        <h2 class="widget-title section-title">目录</h2>
         
         <div class="widget--toc">
             <nav id="TableOfContents">
@@ -320,7 +297,7 @@
 
 
                 <time class="article-time--reading">
-                    8 minute read
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -1664,7 +1641,19 @@
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Oct 09, 2025 21:28 &#43;0800
+        </span>
+    </section></footer>
 
 
     
@@ -1729,8 +1718,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
