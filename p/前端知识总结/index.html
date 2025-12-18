@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\n前端八股文 HTML&amp;CSS 盒模型和怪异盒模型 W3C标准盒模型：总宽度=width+border+padding+margin boxing-size: content-box\nIE怪异盒模型： 总宽度 = width + margin boxing-size:border-box\n元素居中 1.flex布局\n">
+<title>前端知识总结</title>
+
+<link rel='canonical' href='https://oslinss.github.io/p/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="前端知识总结">
+<meta property='og:description' content="\n前端八股文 HTML&amp;CSS 盒模型和怪异盒模型 W3C标准盒模型：总宽度=width+border+padding+margin boxing-size: content-box\nIE怪异盒模型： 总宽度 = width + margin boxing-size:border-box\n元素居中 1.flex布局\n">
+<meta property='og:url' content='https://oslinss.github.io/p/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/'>
+<meta property='og:site_name' content='林'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-12-18T21:59:26&#43;08:00'/><meta property='article:modified_time' content='2025-12-18T22:00:55&#43;08:00'/>
+<meta name="twitter:title" content="前端知识总结">
+<meta name="twitter:description" content="\n前端八股文 HTML&amp;CSS 盒模型和怪异盒模型 W3C标准盒模型：总宽度=width+border+padding+margin boxing-size: content-box\nIE怪异盒模型： 总宽度 = width + margin boxing-size:border-box\n元素居中 1.flex布局\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_f509edb42ecc0ebd.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">林</a></h1>
+            <h2 class="site-description">欢迎来到我的博客！</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#htmlcss"><code>HTML&amp;CSS</code></a>
+      <ol>
+        <li><a href="#盒模型和怪异盒模型">盒模型和怪异盒模型</a></li>
+        <li><a href="#元素居中">元素居中</a></li>
+      </ol>
+    </li>
+    <li><a href="#javascript"><code>JavaScript</code></a>
+      <ol>
+        <li><a href="#基本类型">基本类型</a></li>
+        <li><a href="#引用类型">引用类型</a></li>
+        <li><a href="#存储差异">存储差异</a></li>
+        <li><a href="#判断数据类型">判断数据类型</a>
+          <ol>
+            <li><a href="#1最常见的判断方法typeof">1.最常见的判断方法：typeof</a></li>
+            <li><a href="#2已知对象类型---instance-of">2.已知对象类型:   instance of</a></li>
+            <li><a href="#3对象原型链判断方法-objectprototypetostringcall">3.对象原型链判断方法： Object.prototype.toString.call()</a></li>
+            <li><a href="#4根据对象的构造器constructor进行判断">4.根据对象的构造器constructor进行判断</a></li>
+            <li><a href="#5jquery方法-jquerytype">5.jQuery方法： jquery.type()</a></li>
+            <li><a href="#6有局限的判断严格运算符">6.有局限的判断:严格运算符===</a></li>
+          </ol>
+        </li>
+        <li><a href="#数组去重">数组去重</a></li>
+        <li><a href="#作用域和作用域链">作用域和作用域链</a></li>
+        <li><a href="#原型和原型链">原型和原型链</a></li>
+        <li><a href="#闭包">闭包</a></li>
+        <li><a href="#内存泄露垃圾回收机制">内存泄露、垃圾回收机制</a></li>
+        <li><a href="#js获取dom">Js获取dom</a></li>
+        <li><a href="#route和router的区别"><strong>route和router的区别</strong></a></li>
+        <li><a href="#深浅拷贝">深浅拷贝</a></li>
+        <li><a href="#浏览器存储他们的区别"><strong>浏览器存储，他们的区别？</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#vue">Vue</a>
+      <ol>
+        <li><a href="#vue2和vue3的区别">Vue2和Vue3的区别</a></li>
+        <li><a href="#computed和watch的区别">Computed和Watch的区别</a></li>
+        <li><a href="#v-for和v-if同时使用问题">v-for和v-if同时使用问题</a></li>
+        <li><a href="#生命周期">生命周期</a></li>
+        <li><a href="#性能优化">性能优化</a></li>
+        <li><a href="#状态管理从vuex到pinia">状态管理：从Vuex到Pinia</a></li>
+      </ol>
+    </li>
+    <li><a href="#se6">SE6</a>
+      <ol>
+        <li><a href="#promise">Promise</a></li>
+        <li><a href="#async和await">async和await</a></li>
+        <li><a href="#宏任务和微任务有哪些执行顺序">宏任务和微任务有哪些？执行顺序</a></li>
+        <li><a href="#箭头函数">箭头函数</a></li>
+        <li><a href="#var-let-const的区别">var let const的区别</a></li>
+        <li><a href="#es6新特性">ES6新特性</a></li>
+      </ol>
+    </li>
+    <li><a href="#网络原理"><code>网络原理</code></a>
+      <ol>
+        <li><a href="#浏览器输入url">浏览器输入url</a></li>
+        <li><a href="#tcp协议和http-协议">TCP协议和HTTP 协议</a></li>
+        <li><a href="#http和https的区别">HTTP和HTTPS的区别</a></li>
+        <li><a href="#解决前端跨域问题">解决前端跨域问题</a></li>
+        <li><a href="#websocket和webwork">WebSocket和webwork</a></li>
+      </ol>
+    </li>
+    <li><a href="#性能优化-1">性能优化</a>
+      <ol>
+        <li><a href="#前端优化">前端优化</a></li>
+        <li><a href="#防抖和节流">防抖和节流</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">前端知识总结</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 18, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <br />
+<h1 id="前端八股文">前端八股文
+</h1><h2 id="htmlcss"><code>HTML&amp;CSS</code>
+</h2><h3 id="盒模型和怪异盒模型">盒模型和怪异盒模型
+</h3><p>W3C标准盒模型：总宽度=width+border+padding+margin
+<code>boxing-size: content-box</code></p>
+<p>IE怪异盒模型：
+总宽度 = width + margin
+<code>boxing-size:border-box</code></p>
+<h3 id="元素居中">元素居中
+</h3><p>1.flex布局</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">display:flex;
+</span></span><span class="line"><span class="cl">justify-content:center;
+</span></span><span class="line"><span class="cl">align-items:center;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.grid布局</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.parent {
+</span></span><span class="line"><span class="cl">  display: grid;
+</span></span><span class="line"><span class="cl">  place-items: center; /* 这相当于 align-items: center和justify-items:center 的简写 */
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.定位</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.parent {
+</span></span><span class="line"><span class="cl">  position: relative;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">.child {
+</span></span><span class="line"><span class="cl">  position: absolute;
+</span></span><span class="line"><span class="cl">  top: 50%;
+</span></span><span class="line"><span class="cl">  left: 50%;
+</span></span><span class="line"><span class="cl">  transform: translate(-50%, -50%);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.水平居中-块级元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.child {
+</span></span><span class="line"><span class="cl">  width: 300px; /* 需要给定一个宽度 */
+</span></span><span class="line"><span class="cl">  margin: 0 auto; /* 左右外边距自动分配 */
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="javascript"><code>JavaScript</code>
+</h2><h3 id="基本类型">基本类型
+</h3><p>Number：表示数值，包括整数和浮点数</p>
+<p>String：表示字符串</p>
+<p>Boolean：布尔值</p>
+<p>Undefined：表示未定义的值</p>
+<p>Null：表示空对象指针</p>
+<p>Symbol：表示唯一且不可变的值，通常用于对象属性的唯一标识符</p>
+<h3 id="引用类型">引用类型
+</h3><p>Object：对象字面量表示法</p>
+<p><code>let person = { name: &quot;Nicholas&quot;, age: 29 };</code></p>
+<p>Array：数组</p>
+<p>Function：函数实际上是对象，每个函数都是Function类型的实例</p>
+<p><code>function sum(num1, num2) { return num1 + num2; }</code></p>
+<h3 id="存储差异">存储差异
+</h3><p>基本类型的数据直接存储在栈中，而引用类型的数据存储在堆中，栈中存储的是指向堆内存的引用地址。这导致了在赋值操作时，基本类型是将值直接复制给变量，而引用类型是引用地址的复制。</p>
+<h3 id="判断数据类型">判断数据类型
+</h3><h4 id="1最常见的判断方法typeof">1.最常见的判断方法：typeof
+</h4><p>typeof返回的类型都是字符串形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alert(typeof &#34;helloworld&#34;)    ------------------&gt;&#34;string&#34;     
+</span></span><span class="line"><span class="cl">alert(typeof 123)             ------------------&gt;&#34;number&#34;
+</span></span><span class="line"><span class="cl">alert(typeof [1,2,3])         ------------------&gt;&#34;object&#34;
+</span></span><span class="line"><span class="cl">alert(typeof new Function())  ------------------&gt;&#34;function&#34;
+</span></span><span class="line"><span class="cl">alert(typeof new Date())      ------------------&gt;&#34;object&#34;
+</span></span><span class="line"><span class="cl">alert(typeof new RegExp())    ------------------&gt;&#34;object&#34;
+</span></span><span class="line"><span class="cl">alert(typeof Symbol())        ------------------&gt;&#34;symbol&#34;
+</span></span><span class="line"><span class="cl">alert(typeof true)            ------------------&gt;&#34;true&#34;
+</span></span><span class="line"><span class="cl">alert(typeof null)            ------------------&gt;&#34;object&#34;
+</span></span><span class="line"><span class="cl">alert(typeof undefined)       ------------------&gt;&#34;undefined&#34;
+</span></span><span class="line"><span class="cl">alert(typeof &#39;undefined&#39;)     ------------------&gt;&#34;string&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2已知对象类型---instance-of">2.已知对象类型:   instance of
+</h4><p>instanceof 后面一定要是对象类型，并且大小写不能错，该方法适合一些条件选择或分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[1,2,3] instanceof Array                --------&gt;true
+</span></span><span class="line"><span class="cl">new Date() instanceof Date              --------&gt;true
+</span></span><span class="line"><span class="cl">new Function() instanceof Function      --------&gt;true
+</span></span><span class="line"><span class="cl">new Function() instanceof function      --------&gt;false
+</span></span><span class="line"><span class="cl">null instanceof Object                  --------&gt;false
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3对象原型链判断方法-objectprototypetostringcall">3.对象原型链判断方法： Object.prototype.toString.call()
+</h4><p>适用于所有类型的判断检测,注意区分大小写. toString方法,在Object原型上返回数据格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">console.log(Object.prototype.toString.call(&#34;123&#34;))                   [object String]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(123))                     [object Number]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(true))                    [object Boolean]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call([1, 2, 3]))               [object Array]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(null))                    [object Null]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(undefined))               [object Undefined]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call({name: &#39;Hello&#39;}))         [object Object]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(function () {}))          [object Function]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(new Date()))              [object Date]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(/\d/))                    [object RegExp]
+</span></span><span class="line"><span class="cl">console.log(Object.prototype.toString.call(Symbol()))                [object Symbol]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4根据对象的构造器constructor进行判断">4.根据对象的构造器constructor进行判断
+</h4><h4 id="5jquery方法-jquerytype">5.jQuery方法： jquery.type()
+</h4><p>如果对象是null跟undefined,直接返回&quot;null&quot;和&quot;undefined&quot;</p>
+<p>在使用时,一定要引入jquery文件,不然会报错,jQuery is not defined</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">console.log(jQuery.type(undefined) === &#34;undefined&#34;)                         --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type() === &#34;undefined&#34;);                                 --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(window.notDefined) === &#34;undefined&#34;)                 --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(123) === &#34;number&#34;)                                  --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(&#39;123&#39;) === &#34;string&#34;)                                --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type([]) === &#34;array&#34;)                                    --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(true) === &#34;boolean&#34;)                                --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(function(){}) === &#34;function&#34;)                       --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(new Date()) === &#34;date&#34;)                             --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(/\d/) === &#34;regexp&#34;)                                 --------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(new Error()) === &#34;error&#34;)                           --------&gt;true 
+</span></span><span class="line"><span class="cl">console.log(jQuery.type({name:&#39;Hello&#39;}) === &#34;object&#34;)                        -------&gt;true
+</span></span><span class="line"><span class="cl">console.log(jQuery.type(Symbol()) === &#34;symbol&#34;)                              -------&gt;true
+</span></span><span class="line"><span class="cl">                                                       -------&gt;其余对象类型一般返回object                                                       
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6有局限的判断严格运算符">6.有局限的判断:严格运算符===
+</h4><h3 id="数组去重">数组去重
+</h3><br />
+<p><strong><code>filter</code>+<code>indexOf</code>方法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">使用</span> <span class="n">filter</span> <span class="err">和</span> <span class="n">indexOf</span> <span class="err">去重</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">uniqueArray</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">item</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">===</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">uniqueArray</span><span class="p">);</span> <span class="o">//</span> <span class="err">输出</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br />
+<p><strong><code>Set</code>数据结构</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">uniqueArray</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="n">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">array</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">uniqueArray</span><span class="p">);</span> <span class="o">//</span> <span class="err">输出</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br />
+<br />
+<h3 id="作用域和作用域链">作用域和作用域链
+</h3><p>作用域：规定变量和函数的可使用范围</p>
+<p>作用域链：每个函数都有一个作用域链，查找变量或者函数时，需要从局部作用域到全局作用域依次查找，这些作用域的集合称作作用域链</p>
+<h3 id="原型和原型链">原型和原型链
+</h3><p><strong>原型</strong></p>
+<p>在js中，每一个对象（函数也是对象）都有一个特殊的属性叫做原型（prototype），它指向另一个对象，这个对象（Test.prototype）被称为原型对象， 原型对象是用来共享属性和方法的</p>
+<br />
+<p><strong>原型对象</strong></p>
+<ul>
+<li>
+<p>原型对象有一个constructor属性指向构造函数本身(Test)。</p>
+</li>
+<li>
+<p>原型对象是一个普通的对象，它包含属性和方法。</p>
+</li>
+<li>
+<p>原型对象的属性和方法会被继承到所有通过原型链与它相连的对象。</p>
+</li>
+</ul>
+<p><strong>隐形原型</strong></p>
+<ul>
+<li>
+<p>每个js对象都有一个隐藏的原型对象属性__proto__，它指向创建它的构造函数的原型对象（Test.prototype）</p>
+</li>
+<li>
+<p>proto__存在的意义在于为原型链查找提供方向，原型链查找靠的是__proto，而不是prototype</p>
+</li>
+</ul>
+<p><strong>原型链</strong></p>
+<p>每个对象都有一个原型(prototype),它指向另外一个对象，而指向的对象又存在属性(proto)指向另外一个对象。当我们访问对象(obj3)的属性时，会先在对象定义的属性中进行查找，没找到就会沿着__proto__一路向上查找，最终形成一个链式结构，这整个链式结构就叫做原型链</p>
+<h3 id="闭包">闭包
+</h3><p>JS中内层函数可以访问外层函数的变量，使内部私有变量不受外界干扰，起到保护和保存的作用</p>
+<p>好处：</p>
+<ul>
+<li>
+<p>隔离作用域，保护私有变量；有了闭包才有局部变量，要不然都是全局变量了。</p>
+</li>
+<li>
+<p>让我们可以使用回调，操作其他函数内部；</p>
+</li>
+<li>
+<p>变量长期驻扎在内存中，不会被内存回收机制回收，即延长变量的生命周期；</p>
+</li>
+</ul>
+<p>坏处：内层函数引用外层函数变量，内层函数占用内存。如果不释放内存，过多时，易引起内存泄露。</p>
+<p>引用场景： for循环中的保留i的操作 / 防抖和节流</p>
+<h3 id="内存泄露垃圾回收机制">内存泄露、垃圾回收机制
+</h3><p><strong>内存泄露</strong></p>
+<p>是指不再用的内存没有被及时释放出来，导致该段内存无法被使用就是内存泄漏，内存泄漏指我们无法在通过js访问某个对象，而垃圾回收机制却认为该对象还在被引用，因此垃圾回收机制不会释放该对象，导致该块内存永远无法释放，积少成多，系统会越来越卡以至于崩溃</p>
+<p><strong>垃圾回收机制</strong></p>
+<p>就是垃圾收集器按照固定的时间间隔，周期性地寻找那些不再使用的变量，然后将其清楚或释放内存。（标记清除/引用计数）</p>
+<h3 id="js获取dom">Js获取dom
+</h3><p>1.getElementById：通过元素的ID属性获取DOM元素。</p>
+<p>2.getElementsByClassName：通过元素的class属性获取DOM元素</p>
+<p>3.getElementsByTagName：通过元素的标签名获取DOM元素</p>
+<p>4.querySelector：通过CSS选择器获取DOM元素</p>
+<p>5.querySelectorAll：通过CSS选择器获取DOM元素</p>
+<h3 id="route和router的区别"><strong>route和router的区别</strong>
+</h3><ul>
+<li>
+<p><strong>router</strong>是用来<strong>操作路由</strong>的</p>
+</li>
+<li>
+<p>route<strong>是用来</strong>获取路由信息的 $route.path $ $route.<a class="link" href="https://so.csdn.net/so/search?q=params%5c&amp;spm=1001.2101.3001.7020"  title="params"
+     target="_blank" rel="noopener"
+    >params</a> route.query等</p>
+</li>
+</ul>
+<br />
+<h3 id="深浅拷贝">深浅拷贝
+</h3><p>📋浅拷贝</p>
+<p>只复制指向对象的指针，新旧对象共享同一块内存。</p>
+<p>📄<strong>深拷贝</strong></p>
+<p>另外创造一个一模一样的对象，新对象与原对象不共享内存。</p>
+<p><strong>适用对象</strong>：Object 和 Array 等引用数据类型。</p>
+<br />
+<h3 id="浏览器存储他们的区别"><strong>浏览器存储，他们的区别？</strong>
+</h3><ul>
+<li>
+<p>localStorage：永久保存，以键值对保存，存储空间5M</p>
+</li>
+<li>
+<p>sessionStorage：关闭页签/浏览器时清空</p>
+</li>
+<li>
+<p>cookie：随着请求发送，通过设置过期时间删除</p>
+</li>
+<li>
+<p>session：保存在服务端</p>
+</li>
+</ul>
+<h2 id="vue">Vue
+</h2><h3 id="vue2和vue3的区别">Vue2和Vue3的区别
+</h3><p><strong>响应式系统重构</strong></p>
+<ul>
+<li>
+<p><strong>Vue 2 实现</strong>：基于 <code>Object.defineProperty</code> 拦截对象属性的 getter/setter，实现依赖收集与更新派发 。存在缺陷：无法监听属性新增/删除、数组索引/长度变化，需通过 <code>Vue.set/$set</code> 解决 。</p>
+</li>
+<li>
+<p><strong>Vue 3 升级</strong>：改用 <code>Proxy</code> + <code>Reflect</code>，可拦截对象所有操作（包括属性增删、数组修改），支持深层响应式，性能提升 2-3 倍 。结合 <code>ref</code>（基础类型）和 <code>reactive</code>（对象类型） API 管理响应式状态 。</p>
+</li>
+</ul>
+<p><strong>组件通信升级</strong></p>
+<p><strong><code>&lt;script setup&gt;</code></strong> <strong>语法糖</strong>：</p>
+<ul>
+<li>
+<p>顶层变量自动暴露给模板，无需 <code>return</code> 。</p>
+</li>
+<li>
+<p>编译器宏 <code>defineProps</code>/<code>defineEmits</code> 在编译时处理，无运行时开销 。</p>
+</li>
+<li>
+<p>默认封闭组件实例，需 <code>defineExpose</code> 暴露方法给父组件调用 。</p>
+</li>
+</ul>
+<p><strong>Fragment 支持</strong>：组件可返回多根节点，减少嵌套 wrapper 层 。</p>
+<br />
+<h3 id="computed和watch的区别">Computed和Watch的区别
+</h3><p>🧮<strong>Computed</strong></p>
+<ul>
+<li>
+<p>计算属性，依赖其他属性，缓存，只在依赖变化时重新计算</p>
+</li>
+<li>
+<p>适合用于计算值，如格式化数据、过滤列表等</p>
+</li>
+</ul>
+<p>👁️<strong>Watch</strong></p>
+<ul>
+<li>
+<p>观察者，监听数据变化，执行异步或开销大的操作</p>
+</li>
+<li>
+<p>适合用于响应数据变化执行副作用，如 Ajax 请求、DOM 操作等</p>
+</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>
+<p><strong>Computed</strong>：数值计算，缓存</p>
+</li>
+<li>
+<p><strong>Watch</strong>：异步操作，频率限制</p>
+</li>
+</ul>
+<br />
+<h3 id="v-for和v-if同时使用问题">v-for和v-if同时使用问题
+</h3><p><strong>问题</strong></p>
+<ul>
+<li>
+<p><strong>v-for 优先级高于 v-if</strong>：每次遍历都会执行 v-if 判断，影响性能。</p>
+</li>
+<li>
+<p><strong>避免同时使用</strong>：将 v-if 放在 v-for 外层，或者用 computed 替换。</p>
+</li>
+</ul>
+<p><strong>⚠️ 注意：v-for 必须为 item 添加 key，方便 Vue.js 内部机制精准找到列表数据。</strong></p>
+<h3 id="生命周期">生命周期
+</h3><p><img src="https://cn.vuejs.org/assets/lifecycle_zh-CN.W0MNXI0C.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1.00"
+	
+	
+></p>
+<br />
+<br />
+<p><strong>Composition API 使用示例</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onBeforeMount</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onMounted</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onBeforeUpdate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onUpdated</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onBeforeUnmount</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onUnmounted</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onActivated</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">onDeactivated</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">组件挂载阶段</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onBeforeMount</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;DOM 挂载前&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;DOM 挂载完成&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：初始化图表、地图等第三方库</span>
+</span></span><span class="line"><span class="cl">      <span class="n">initChart</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">组件更新阶段</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onBeforeUpdate</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;数据变化，DOM 更新前&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">onUpdated</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;数据变化，DOM 更新后&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：更新第三方库</span>
+</span></span><span class="line"><span class="cl">      <span class="n">updateChart</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">组件卸载阶段</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onBeforeUnmount</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;组件卸载前&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：清除定时器</span>
+</span></span><span class="line"><span class="cl">      <span class="n">clearInterval</span><span class="p">(</span><span class="n">timer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">onUnmounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;组件卸载完成&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：销毁第三方库实例</span>
+</span></span><span class="line"><span class="cl">      <span class="n">destroyChart</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="n">KeepAlive</span> <span class="err">相关</span>
+</span></span><span class="line"><span class="cl">    <span class="n">onActivated</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;组件被激活&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：恢复播放器状态</span>
+</span></span><span class="line"><span class="cl">      <span class="n">video</span><span class="o">.</span><span class="n">play</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">onDeactivated</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;组件被停用&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="err">实际应用：暂停播放器</span>
+</span></span><span class="line"><span class="cl">      <span class="n">video</span><span class="o">.</span><span class="n">pause</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="性能优化">性能优化
+</h3><p><strong>一、路由懒加载（import ()）</strong></p>
+<ul>
+<li>减小应用初始打包体积，提升首屏加载速度，避免加载未访问的路由代码（仅在访问该路由时才加载对应模块），无需额外依赖，路由配置中用 <code>import()</code> 即可</li>
+</ul>
+<p><strong>二、组件异步（defineAsyncComponent）</strong></p>
+<ul>
+<li>针对非首屏组件，条件渲染的组件（如弹窗、详情组件），支持加载状态 / 错误处理，需用 <code>defineAsyncComponent</code> 包裹。</li>
+</ul>
+<p><strong>三、图片懒加载（v-lazy）</strong></p>
+<ul>
+<li>需安装 <code>vue3-lazyload</code>，给<code>&lt;img&gt;</code>标签绑定<code>v-lazy</code>指令，指定图片地址，支持占位图、加载状态配置</li>
+</ul>
+<p><strong>四、<keep-alive></strong> <strong>缓存</strong></p>
+<ul>
+<li><strong><code>&lt;keep-alive&gt;</code></strong>：包裹路由组件或普通组件，可通过<code>include/exclude</code>指定缓存范围，<code>max</code>限制缓存数量，减少组件重复渲染、生命周期钩子重复执行的开销，提升返回页面（如列表页→详情页→列表页）的响应速度。</li>
+</ul>
+<br />
+<h3 id="状态管理从vuex到pinia">状态管理：从Vuex到Pinia
+</h3><p>Actions 支持直接同步/异步修改状态，结合 DevTools 可追踪变更；移除 Mutations 减少模板代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span> <span class="n">Pinia</span> <span class="n">Store</span> <span class="err">定义（组合式</span> <span class="n">API</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="p">{</span> <span class="n">defineStore</span> <span class="p">}</span> <span class="n">from</span> <span class="s1">&#39;pinia&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="k">const</span> <span class="n">useCounterStore</span> <span class="o">=</span> <span class="n">defineStore</span><span class="p">(</span><span class="s1">&#39;counter&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">count</span> <span class="o">=</span> <span class="n">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">doubleCount</span> <span class="o">=</span> <span class="n">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">count</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">function</span> <span class="n">increment</span><span class="p">()</span> <span class="p">{</span> <span class="n">count</span><span class="o">.</span><span class="n">value</span><span class="o">++</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="n">count</span><span class="p">,</span> <span class="n">doubleCount</span><span class="p">,</span> <span class="n">increment</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span> <span class="n">Vuex</span> <span class="n">Module</span> <span class="err">定义（对比）</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">state</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">getters</span><span class="p">:</span> <span class="p">{</span> <span class="n">doubleCount</span><span class="p">:</span> <span class="n">state</span> <span class="o">=&gt;</span> <span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">mutations</span><span class="p">:</span> <span class="p">{</span> <span class="n">INCREMENT</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span> <span class="n">state</span><span class="o">.</span><span class="n">count</span><span class="o">++</span> <span class="p">}</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">actions</span><span class="p">:</span> <span class="p">{</span> <span class="n">increment</span><span class="p">({</span> <span class="n">commit</span> <span class="p">})</span> <span class="p">{</span> <span class="n">commit</span><span class="p">(</span><span class="s1">&#39;INCREMENT&#39;</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br />
+<h2 id="se6">SE6
+</h2><h3 id="promise">Promise
+</h3><p><strong><code>Promise</code>是一个构造函数，接收一个函数作为参数，返回一个 Promise 实例</strong></p>
+<p><strong>Promise的核心优势</strong></p>
+<ul>
+<li>
+<p>可读性：代码结构清晰，易于理解</p>
+</li>
+<li>
+<p>可维护性：错误处理集中，便于维护</p>
+</li>
+<li>
+<p>组合性：可以轻松组合多个异步操作</p>
+</li>
+<li>
+<p>状态管理：明确的pending/fulfilled/rejected状态</p>
+</li>
+</ul>
+<p><strong>特点</strong></p>
+<p>1.状态不受外界影响</p>
+<ul>
+<li>只有异步操作的结果可以决定当前是哪一种状态</li>
+</ul>
+<p>2.状态一旦改变，永不回头</p>
+<ul>
+<li>
+<p>pending -&gt; fulfilled或rejected</p>
+</li>
+<li>
+<p>任何时候都可以获取最终结果</p>
+</li>
+</ul>
+<p><strong>缺点</strong></p>
+<p>🚫1. 无法取消</p>
+<p>新建后立即执行，无法中途停止。</p>
+<p>⚠️2. 错误处理</p>
+<p>未设置回调时，内部错误不会反映到外部。</p>
+<p>❓3. 进度未知</p>
+<p>pending 状态下，无法得知当前进展。</p>
+<h3 id="async和await">async和await
+</h3><ul>
+<li>
+<p><code>async</code>：标记函数为异步，返回 Promise。</p>
+</li>
+<li>
+<p><code>await</code>：暂停 <code>async</code> 函数执行，等待 Promise 完成，返回结果或抛出错误。</p>
+</li>
+<li>
+<p>核心优势：异步代码同步化，可读性强，错误处理更直观。</p>
+</li>
+<li>
+<p>关键技巧：串行用 <code>await</code>，并行用 <code>Promise.all()</code>/<code>Promise.allSettled()</code>，错误用 <code>try/catch</code> 或 <code>.catch()</code>。</p>
+<br />
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">async</span> <span class="n">function</span> <span class="n">conditionalTask</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">user</span> <span class="o">=</span> <span class="n">await</span> <span class="n">fetchUser</span><span class="p">();</span> <span class="o">//</span> <span class="err">获取用户信息</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">isVIP</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">vipData</span> <span class="o">=</span> <span class="n">await</span> <span class="n">fetchVIPData</span><span class="p">();</span> <span class="o">//</span> <span class="err">仅</span> <span class="n">VIP</span> <span class="err">用户执行</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;VIP 数据：&#34;</span><span class="p">,</span> <span class="n">vipData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">normalData</span> <span class="o">=</span> <span class="n">await</span> <span class="n">fetchNormalData</span><span class="p">();</span> <span class="o">//</span> <span class="err">普通用户执行</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;普通数据：&#34;</span><span class="p">,</span> <span class="n">normalData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">async</span> <span class="n">function</span> <span class="n">simpleDemo</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">尝试执行可能出错的异步操作</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">data</span> <span class="o">=</span> <span class="n">await</span> <span class="n">fetchSimpleData</span><span class="p">(</span><span class="bp">false</span><span class="p">);</span> <span class="o">//</span> <span class="err">传</span> <span class="bp">false</span> <span class="err">模拟失败</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;成功：&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span> <span class="o">//</span> <span class="err">成功才会执行</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">捕获所有错误并处理</span>
+</span></span><span class="line"><span class="cl">    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;失败：&#34;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">);</span> <span class="o">//</span> <span class="err">失败时输出错误信息</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="宏任务和微任务有哪些执行顺序">宏任务和微任务有哪些？执行顺序
+</h3><p><strong>宏任务</strong>：script，setTimeout，setInterval。</p>
+<p><strong>微任务</strong>：Promise，process.nextTick。</p>
+<p><strong>微任务会优先于宏任务执行。这意味着在当前任务执行结束后，所有微任务都会被立即执行，而宏任务只有在所有微任务执行完毕后才会执行。</strong></p>
+<h3 id="箭头函数">箭头函数
+</h3><ul>
+<li>
+<p>箭头函数实现了一种更加简洁的书写方式。</p>
+</li>
+<li>
+<p>箭头函数内部没有arguments，也没有prototype属性，所以不能用new关键字调用箭头函数。</p>
+</li>
+<li>
+<p>箭头函数和普通函数最大的区别在于其内部this永远指向其父级对象的this。(重点)</p>
+</li>
+</ul>
+<h3 id="var-let-const的区别">var let const的区别
+</h3><ul>
+<li>
+<p>var声明的变量存在变量提升，即变量可以在声明之前调用，var允许重复声明变量var不存在块级作用域</p>
+</li>
+<li>
+<p>let和const不存在变量提升，即它们所声明的变量一定要在声明后使用，否则报错</p>
+</li>
+<li>
+<p>let和const存在块级作用域</p>
+</li>
+<li>
+<p>let和const在同一作用域不允许重复声明变量</p>
+</li>
+</ul>
+<h3 id="es6新特性">ES6新特性
+</h3><p>模板字符串，箭头函数，拓展运输符，map和set，promise和proxy，数组方法Array.from()，map()、filter()，forEach()，some()、every()</p>
+<h2 id="网络原理"><code>网络原理</code>
+</h2><h3 id="浏览器输入url">浏览器输入url
+</h3><ul>
+<li>
+<p>先进行DNS域名解析，查看本地hosts文件，查看有没有当前域名对应的ip地址，若有直接发起请求，没有的话会在本地域名服务器去查找，没找到的话就去根服务器查找最后查找到对应的ip地址后把对应规则保存到本地的hosts文件中。</p>
+</li>
+<li>
+<p>进行http请求，三次握手四次挥手建立断开连接</p>
+</li>
+<li>
+<p>服务器处理，可能返回304也可能返回200</p>
+</li>
+<li>
+<p>客户端自上而下执行代码渲染页面</p>
+</li>
+</ul>
+<h3 id="tcp协议和http-协议">TCP协议和HTTP 协议
+</h3><ul>
+<li>
+<p>TCP协议在建立过程中会进行三次握手确保双方同步并避免无效连接，四次挥手则正常终止连接或异常终止连接。</p>
+</li>
+<li>
+<p>HTTP协议是超文本传输协议，是用于从万维网服务器传输超文本到本地浏览器的传送协议。HTTP是一个基于TCP/IP通信协议来传递数据的。</p>
+</li>
+</ul>
+<h3 id="http和https的区别">HTTP和HTTPS的区别
+</h3><p>HTTP 是明文传输，数据未加密，容易被窃取或篡改。而 HTTPS 使用 SSL/TLS 协议对数据进行加密，确保传输过程中的数据安全性和完整性。</p>
+<h3 id="解决前端跨域问题">解决前端跨域问题
+</h3><p>JSONP跨域，CORS，nginx代理跨域，nodejs中间件代理跨域，WebSocket协议跨域</p>
+<h3 id="websocket和webwork">WebSocket和webwork
+</h3><p>WebSocket作用是即使通信双向通信，webwork是多进程的</p>
+<br />
+<h2 id="性能优化-1">性能优化
+</h2><h3 id="前端优化">前端优化
+</h3><p>🌐<strong>HTTP 缓存</strong></p>
+<p>服务器端设置，传输时使用。</p>
+<p>💾<strong>浏览器缓存</strong></p>
+<p>前端 JS 设置，本地存储。</p>
+<p><strong>目的</strong>：优化性能，减少延迟，节省带宽。</p>
+<p><strong>类型</strong>：</p>
+<ul>
+<li>
+<p><strong>强制缓存</strong>：直接使用缓存，不请求服务器。</p>
+</li>
+<li>
+<p><strong>协商缓存</strong>：请求服务器，验证缓存是否有效。</p>
+<br />
+</li>
+</ul>
+<h3 id="防抖和节流">防抖和节流
+</h3><p>⏱️<strong>防抖 (debounce)</strong></p>
+<p>触发事件后 n 秒内只执行一次，后续触发重新计算时间。</p>
+<ul>
+<li>
+<p><strong>非立即执行版</strong>：n 秒后执行，期间再次触发重置计时。</p>
+</li>
+<li>
+<p><strong>立即执行版</strong>：立即执行，n 秒内不触发才继续执行。</p>
+</li>
+</ul>
+<p>🔄<strong>节流 (throttle)</strong></p>
+<p>连续触发事件，n 秒内只执行一次。</p>
+<ul>
+<li>
+<p><strong>时间戳版</strong>：记录上一次执行时间，与当前时间差大于 n 秒才执行。</p>
+</li>
+<li>
+<p><strong>定时器版</strong>：设置定时器，定时执行，期间再次触发不重置定时器。</p>
+</li>
+</ul>
+<br />
+<p>防抖和节流是前端开发中常用的优化技术，用于控制事件触发频率，提高性能。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Dec 18, 2025 22:00 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 lin
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+
+
+
+
+    </body>
+</html>
