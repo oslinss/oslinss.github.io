@@ -2,7 +2,7 @@
 title: Http
 description: Create beautiful interactive image gallery using Markdown
 date: 2024-11-26 00:00:00+0000
-image: 2.jpg
+image: 2.png
 ---
 
 # 1 了解Web及网络基础

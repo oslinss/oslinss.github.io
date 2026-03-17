@@ -1,8 +1,8 @@
 ---
-title: "Cal"
+title: "算法"
 description: 
 date: 2024-11-07T08:19:59Z
-image: 
+image: c.png
 math: 
 license: 
 comments: true
